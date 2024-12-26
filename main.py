@@ -1,5 +1,5 @@
-from converter import ImageConverter
+from converter import TextConverter
 
-imagePath = input("Ingrese la ruta de la imagen: ")
-image = ImageConverter(imagePath)
+imagePath = input("Enter the image path: ")
+image = TextConverter(imagePath)
 image.writeTextImage()
