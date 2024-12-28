@@ -1,17 +1,33 @@
 from PIL import Image # type: ignore
+import math
 
 class ASCIIGenerator:
 
     def __init__(self, imagePath):
-        self.imagePath = imagePath
+        self.image = Image.open(imagePath)
 
     def draw_ascii(self, draw_type):
-        image = Image.open(self.imagePath)
-        image = image.resize((32, 32))
+        image = self.image
+        image = self.resize_with_aspect_ratio(image, 128)
+        image = self.normalize_image(image)
 
         drawing_method = self.select_drawing_type(draw_type)
         picture = drawing_method.convert_to_ascii(image)
         return picture
+
+    def resize_with_aspect_ratio(self, image, height):
+        size = (math.trunc(image.width / image.height * height), height)
+        image.thumbnail(size)
+        return image
+    
+    def resize_image(self, width, height):
+        return self.image.resize((width, height))
+
+    def normalize_image(self, image):
+        width, height = image.size
+        normalize_width = width * 2
+
+        return image.resize((normalize_width, height))
 
     def select_drawing_type(self, draw_type):
         draw_type = draw_type.lower()
