@@ -1,6 +1,6 @@
 from PIL import Image # type: ignore
 from typing import Optional
-import shapes
+import image_shape
 import math
 
 class ASCIIGenerator:
@@ -10,15 +10,18 @@ class ASCIIGenerator:
 
     def draw_ascii(self, draw_type: str, shape: Optional[str] = None):
         image = self.image
-        image = self.resize_with_aspect_ratio(image, 128)
+        image = self.resize_with_aspect_ratio(128)
         image = self.normalize_image(image)
-        image = self.include_shape(image, shape)
+
+        if shape is not None:
+            image = self.include_shape(shape, image)
 
         drawing_method = self.select_drawing_type(draw_type)
         picture = drawing_method.convert_to_ascii(image)
         return picture
 
-    def resize_with_aspect_ratio(self, image, height):
+    def resize_with_aspect_ratio(self, height):
+        image = self.image
         size = (math.trunc(image.width / image.height * height), height)
         image.thumbnail(size)
         return image
@@ -32,25 +35,10 @@ class ASCIIGenerator:
 
         return image.resize((normalize_width, height))
 
-    def include_shape(self, image, shape):
-        shape = shapes.Stair(image)
-        star_position = shape.draw_shape()
-        pixel_list = list(image.getdata())
-        new_image = Image.new("L", image.size, 255)
-        
-        for y in range(image.height): # It spends a lot of time because is a loop with the original image size
-            for x in range(image.width):
-                if (x, y) in star_position:
-                    index = y * image.width + x
-                    pixel_value = pixel_list[index]
-                    r, g, b = pixel_value
-                    gray_value = int(0.299 * r + 0.587 * g + 0.114 * b)
-                    new_image.putpixel((x, y), gray_value)
-
-
-        return new_image
-
-
+    def include_shape(self, shape_name, image):
+        shape = image_shape.Shape(shape_name, image)
+        image = shape.apply_shape()
+        return image
 
     def select_drawing_type(self, draw_type):
         draw_type = draw_type.lower()
@@ -84,7 +72,8 @@ class ASCIIGenerator:
                     characters[0] if pixel <= 64 else
                     characters[1] if pixel <= 128 else
                     characters[2] if pixel <= 192 else
-                    characters[3]
+                    characters[3] if pixel <= 254 else
+                    characters[4]
                     for pixel in pixelList[i : i + image.width]
                 )
                 asciiPicture.append(row + "\n")
