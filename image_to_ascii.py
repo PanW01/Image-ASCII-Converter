@@ -10,7 +10,7 @@ class ASCIIGenerator:
 
     def draw_ascii(self, draw_type: str, shape: Optional[str] = None):
         image = self.image
-        image = self.resize_with_aspect_ratio(128)
+        image = self.resize_with_aspect_ratio(64)
         image = self.normalize_image(image)
 
         if shape is not None:
@@ -64,7 +64,7 @@ class ASCIIGenerator:
     class GrayScaleDrawing:
         def convert_to_ascii(self, image):
             image = image.convert("L")
-            characters = ["█", "▓", "▒", "░", "   "]
+            characters = ["█", "▓", "▒", "░"]
             pixelList = list(image.getdata())
             asciiPicture = list()
             for i in range(0, len(pixelList), image.width):
@@ -72,8 +72,7 @@ class ASCIIGenerator:
                     characters[0] if pixel <= 64 else
                     characters[1] if pixel <= 128 else
                     characters[2] if pixel <= 192 else
-                    characters[3] if pixel <= 254 else
-                    characters[4]
+                    characters[3]
                     for pixel in pixelList[i : i + image.width]
                 )
                 asciiPicture.append(row + "\n")
