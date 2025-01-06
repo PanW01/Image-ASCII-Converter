@@ -1,11 +1,19 @@
 from PIL import Image # type: ignore
+from typing import Optional, Union
 import os
-import math
 
 class Shape:
-    def __init__(self, shape_name, image):
-        shape_path = os.path.join(os.getcwd(), f"default_shapes/{shape_name}.png")
-        self.shape = Image.open(shape_path)
+    def __init__(self, image, shape: Union[str, Image.Image], inversed_colors: Optional[bool] = False):
+        if isinstance(shape, str):
+            shape_path = os.path.join(os.getcwd(), f"default_shapes/{shape}.png")
+            actual_shape = Image.open(shape_path)
+        elif isinstance(shape, Image.Image):
+            actual_shape = shape
+        else:
+            raise TypeError("Shape must be a string or Image")
+
+        self.shape = actual_shape
+        self.inversed_colors = inversed_colors
         self.image = image
     
     def apply_shape(self):
@@ -31,11 +39,12 @@ class Shape:
         pixel_list = list(shape.getdata())
         pixels_position = [shape.width]
 
-        offset_x, offset_y = self.get_center_image(shape, self.image)
-        print(offset_x, offset_y)
+        offset_x, offset_y = self.get_offset(shape, self.image)
 
         for index, value in enumerate(pixel_list):
-            if value < 128:
+            color_threshold = self.shape_colors(value)
+
+            if value < color_threshold:
 
                 column_index = index % shape.width
                 row_index = index // shape.width
@@ -49,7 +58,7 @@ class Shape:
 
         return pixels_position
     
-    def get_center_image(self, shape, image):
+    def get_offset(self, shape, image):
         shape_center_x = shape.width // 2
         shape_center_y = shape.height // 2
 
@@ -60,3 +69,15 @@ class Shape:
         new_shape_y = image_center_y - shape_center_y
 
         return new_shape_x, new_shape_y
+    
+    def shape_colors(self, color_value):
+        if self.inversed_colors:
+            if color_value > 240:
+                return 255
+            else:
+                return 0
+        else:
+            if color_value < 240:
+                return 255
+            else:
+                return 0
