@@ -3,14 +3,13 @@ from typing import Optional, Union
 import image_shape
 import math
 
-class ASCIIGenerator:
+class ASCIIImageGenerator:
+    def __init__(self, image: Image.Image):
+            self.image = image
 
-    def __init__(self, imagePath):
-        self.image = Image.open(imagePath)
-
-    def draw_ascii(self, draw_type: str, image_reversed_colors: Optional[bool] = False, shape: Optional[Union[str, Image.Image]] = None, shape_reversed_colors: Optional[bool] = False):
+    def get_ascii_image(self, draw_type: str, image_reversed_colors: Optional[bool] = False, shape: Optional[Union[str, Image.Image]] = None, shape_reversed_colors: Optional[bool] = False):
         image = self.image
-        image = self.resize_with_aspect_ratio(128)
+        image = self.resize_with_aspect_ratio(56)
         image = self.normalize_image(image)
 
         if shape is not None:
@@ -56,25 +55,24 @@ class ASCIIGenerator:
 
     class BinaryDrawing:
         def convert_to_ascii(self, image, reversed_colors: bool):
-            characters = ["■", "□"]
+            characters = ["█", "░"]
             if reversed_colors:
-                characters = ASCIIGenerator.reverse_colors(characters)
+                characters = ASCIIImageGenerator.reverse_colors(characters)
 
             image = image.convert("L")
             pixelList = list(image.getdata())
             asciiPicture = list()
             for i in range(0, len(pixelList), image.width):
                 row = "".join([characters[0] if pixel < 128 else characters[1] for pixel in pixelList[i : i + image.width]])
-                asciiPicture.append(row + "\n") 
+                asciiPicture.append(row) 
             
             return asciiPicture
-
 
     class GrayScaleDrawing:
         def convert_to_ascii(self, image, reversed_colors: bool):
             characters = ["█", "▓", "▒", "░"]
             if reversed_colors:
-                characters = ASCIIGenerator.reverse_colors(characters)
+                characters = ASCIIImageGenerator.reverse_colors(characters)
 
             image = image.convert("L")
             pixelList = list(image.getdata())
@@ -87,6 +85,6 @@ class ASCIIGenerator:
                     characters[3]
                     for pixel in pixelList[i : i + image.width]
                 )
-                asciiPicture.append(row + "\n")
+                asciiPicture.append(row)
             
             return asciiPicture
