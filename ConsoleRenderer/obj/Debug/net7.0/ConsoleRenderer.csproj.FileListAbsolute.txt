@@ -1,0 +1,12 @@
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\bin\Debug\net7.0\ConsoleRenderer.deps.json
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\bin\Debug\net7.0\ConsoleRenderer.dll
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\bin\Debug\net7.0\ConsoleRenderer.pdb
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.AssemblyInfoInputs.cache
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.AssemblyInfo.cs
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.csproj.CoreCompileInputs.cache
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.sourcelink.json
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.dll
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\refint\ConsoleRenderer.dll
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ConsoleRenderer.pdb
+C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\obj\Debug\net7.0\ref\ConsoleRenderer.dll

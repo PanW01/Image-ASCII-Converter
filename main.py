@@ -1,23 +1,26 @@
+import clr
+import os
+clr.AddReference(os.getcwd() + r"\ConsoleRenderer\bin\Debug\net7.0\ConsoleRenderer.dll")
+import ConsoleRendererLib
+
 from image_to_ascii import *
 from video_to_ascii import *
+
 from PIL import Image # type: ignore
-import os
-import time
-import pandas
 import imageio
+import System
 
 desktop_path = os.path.join(os.path.expanduser("~"), "Desktop")
 
-video = imageio.get_reader("C:/Users/USUARIO/Desktop/【東方】Bad Apple!! ＰＶ【影絵】.mp4")
-ascii_video_result = ASCIIVideoGenerator(video).get_ascii_frames(2)
+video = imageio.get_reader(input("Enter the video path: "))
+ascii_video_result = ASCIIVideoGenerator(video).get_ascii_frames(1)
 
-while True:
-    os.system("mode con: cols=174 lines=63")
-    for frame in ascii_video_result:
-        frame_loaded = pandas.DataFrame(frame)
-        print(frame_loaded.to_string(index=False, header=False))
-        time.sleep(0.015)
-        os.system('cls')
+ascii_video_result_csharp = System.Collections.Generic.List[str]()
+for ascii_frame in ascii_video_result:
+    ascii_video_result_csharp.Add("\n".join(ascii_frame))
+
+renderer = ConsoleRendererLib.ConsoleRenderer()
+renderer.DrawFrames(ascii_video_result_csharp, 55)
 
 image_path = input("Enter the image path: ")
 shape = Image.open("C:\\Users\\USUARIO\\Desktop\\figure-octagon-red-information-icon-260nw-2078450488.webp")
