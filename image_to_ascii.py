@@ -45,6 +45,8 @@ class ASCIIImageGenerator:
             return self.BinaryDrawing()
         elif draw_type == "grayscale":
             return self.GrayScaleDrawing()
+        elif draw_type == "characters":
+            return self.CharactersDrawing()
         else:
             raise ValueError("Invalid drawing type")
         
@@ -85,6 +87,25 @@ class ASCIIImageGenerator:
                     characters[3]
                     for pixel in pixelList[i : i + image.width]
                 )
+                asciiPicture.append(row)
+            
+            return asciiPicture
+    
+    class CharactersDrawing:
+        def convert_to_ascii(self, image, reversed_colors: bool):
+            characters = ["@", "#", "%", "8", "&", "o", "*", "=", ":", ".", "'", "`"]
+            if reversed_colors:
+                characters = ASCIIImageGenerator.reverse_colors(characters)
+
+            image = image.convert("L")
+            pixelList = list(image.getdata())
+            asciiPicture = list()
+            for i in range(0, len(pixelList), image.width):
+                row = "".join(
+                    characters[min(pixel * len(characters) // 256, len(characters) - 1)]
+                    for pixel in pixelList[i : i + image.width]
+                )
+                
                 asciiPicture.append(row)
             
             return asciiPicture

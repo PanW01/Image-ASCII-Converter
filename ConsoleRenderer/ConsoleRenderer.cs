@@ -21,5 +21,15 @@ namespace ConsoleRendererLib
             }
             Console.Clear();
         }
+
+        public void DrawSingleImage(string frame)
+        {
+            Console.Clear();
+            StringBuilder sb = new StringBuilder();
+            sb.Append(frame);
+
+            Console.SetCursorPosition(0, 0);
+            Console.Write(sb.ToString());
+        }
     }
 }

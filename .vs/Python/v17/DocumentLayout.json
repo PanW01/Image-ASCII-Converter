@@ -1,0 +1,41 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "C:\\Users\\USUARIO\\Desktop\\Python\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ABF81A21-055C-496F-2511-ACC380D2B71B}|ConsoleRenderer\\ConsoleRenderer.csproj|c:\\users\\usuario\\desktop\\python\\consolerenderer\\consolerenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ABF81A21-055C-496F-2511-ACC380D2B71B}|ConsoleRenderer\\ConsoleRenderer.csproj|solutionrelative:consolerenderer\\consolerenderer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 1,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "ConsoleRenderer.cs",
+              "DocumentMoniker": "C:\\Users\\USUARIO\\Desktop\\Python\\ConsoleRenderer\\ConsoleRenderer.cs",
+              "RelativeDocumentMoniker": "ConsoleRenderer\\ConsoleRenderer.cs",
+              "ToolTip": "C:\\Users\\USUARIO\\Desktop\\Python\\ConsoleRenderer\\ConsoleRenderer.cs",
+              "RelativeToolTip": "ConsoleRenderer\\ConsoleRenderer.cs",
+              "ViewState": "AgIAAAcAAAAAAAAAAAAowA8AAAAhAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-02-01T18:56:31.874Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
