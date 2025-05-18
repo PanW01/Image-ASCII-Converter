@@ -8,6 +8,6 @@ build_property.PlatformNeutralAssembly =
 build_property.EnforceExtendedAnalyzerRules = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = ConsoleRenderer
-build_property.ProjectDir = C:\Users\USUARIO\Desktop\Python\ConsoleRenderer\
+build_property.ProjectDir = C:\Users\USUARIO\Desktop\Ascii\ConsoleRenderer\
 build_property.EnableComHosting = 
 build_property.EnableGeneratedComInterfaceComImportInterop = 

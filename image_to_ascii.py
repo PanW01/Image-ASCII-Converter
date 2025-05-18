@@ -9,7 +9,7 @@ class ASCIIImageGenerator:
 
     def get_ascii_image(self, draw_type: str, image_reversed_colors: Optional[bool] = False, shape: Optional[Union[str, Image.Image]] = None, shape_reversed_colors: Optional[bool] = False):
         image = self.image
-        image = self.resize_with_aspect_ratio(56)
+        image = self.resize_with_aspect_ratio(48)
         image = self.normalize_image(image)
 
         if shape is not None:

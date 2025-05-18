@@ -1,3 +1,5 @@
+import asyncio
+
 import clr
 import os
 clr.AddReference(os.getcwd() + r"\ConsoleRenderer\bin\Debug\net7.0\ConsoleRenderer.dll")
@@ -6,6 +8,7 @@ import System
 
 from image_to_ascii import *
 from video_to_ascii import *
+from video_audio_player import AudioBytesPlayer
 
 from PIL import Image # type: ignore
 import imageio
@@ -30,6 +33,10 @@ for ascii_frame in ascii_video_result:
 
 video_options.change_video_color("Green")
 
+player = ConsoleRendererLib.AudioPlayer()
+loop = asyncio.new_event_loop()
+asyncio.set_event_loop(loop)
+loop.run_in_executor(None, player.Play, AudioBytesPlayer().get_audio(video_path))
 renderer = ConsoleRendererLib.ConsoleRenderer()
 renderer.DrawFrames(ascii_video_result_csharp, System.Int32(int(fps)))
 
